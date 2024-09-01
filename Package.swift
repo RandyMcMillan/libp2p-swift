@@ -16,6 +16,7 @@ let package = Package(
         .package(url: "https://github.com/swift-libp2p/swift-libp2p-noise", .upToNextMinor(from: "0.1.0")),
         // MPLEX Muxer Module
         .package(url: "https://github.com/swift-libp2p/swift-libp2p-mplex", .upToNextMinor(from: "0.1.0")),
+        .package(url: "https://github.com/nostr-sdk/nostr-sdk-ios.git", .upToNextMajor(from: "0.1.0")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -26,6 +27,7 @@ let package = Package(
                 .product(name: "LibP2P", package: "swift-libp2p"),
                 .product(name: "LibP2PNoise", package: "swift-libp2p-noise"),
                 .product(name: "LibP2PMPLEX", package: "swift-libp2p-mplex"),
+                .product(name: "NostrSDK", package: "nostr-sdk-ios")
             ]),
         .executableTarget(
             name: "Run",
@@ -33,7 +35,8 @@ let package = Package(
         .testTarget(
             name: "AppTests",
             dependencies: [
-                .target(name: "App")
+                .target(name: "App"),
+                .target(name: "NostrSDK")
             ]),
     ]
 )
